@@ -1,0 +1,46 @@
+def total_value_of_spinner(nds, row_index, column_index)
+  
+  coordinate_total = 0 # This number will be the TOTAL amount of money in the inner_index. This simplifies my method. So rather than having a loop within a loop within a loop, I'll get this value from one loop, then use it in another method. 
+  
+  
+  inner_len = nds[row_index][column_index].length #the inner length is how many inner indexes are there in this column index. My example is 2. So the inner length is 2. 
+  
+  inner_index = 0 
+  while inner_index < inner_len do # These two combined (plus the += below) create my loop. So when my inner inner index reaches two, the loop will end. 
+  
+    coordinate_total += nds[row_index][column_index][inner_index][:price] # This to the left is the exact coordinates of the price of every snack in this vending machine. Irrespective of the inner index, column index, or row index. This price is added to the coordinate total, continuously updating it, as we are looping thru these inner indexes capturing data. 
+    
+    
+    inner_index += 1 # This is how we loop thru the each inner indexes. They call this "spinners". For me, its just each inner index. When this method is completed, all the values from this inner index will be captured. Giving me... 
+    
+  end
+  
+  coordinate_total # The total value of everything in this inner index, or spinner. This is just for one columnindex though. Or, the two spinners in one column index. When we put in new values, we'll get the rest. How do we do that?
+end
+ 
+# Main code
+ 
+grand_total = 0 #This is the grand total. This is where everything is going. What this is all about.
+
+row_index = 0
+while row_index < vm.length do # This is my loop. Row_index represents the indexes of the biggest loop. vm.lenght tells me how many of these indexes I have. My loop always includes the index of what Im looping thru, a way to count how many indexes I have, and less than sign that tells my loop to stop once this number is hit. The do and end keywords are included as well.  
+
+  column_index = 0
+  while column_index < vm[row_index].length do # My second loop. This time capturing all of the column indexes similar to how the row index was captured above. This is how I iterate thru the column indexes.
+  
+  #Below, in the previous method, I had some code below that then iterated thru each snack in each spring, capturing its value and feeding it to my grand total. I first had to  get the inner length, that being, lets say , how many chips in the spring. Then I had to get the price of each bag of chips, iterating thru each spring the amount of time captured by my code thru the springs length.
+  
+  
+    grand_total += total_value_of_spinner(vm, row_index, column_index) # Now rather, all of that was done above. So I have the combined value of the spring I am currently working on. So I just add that to the grand total. 
+    
+    column_index += 1 #This will iterate thru the the next column index until both have been spent. then this will end. 
+  end
+  
+  row_index += 1 #hen they will go thru the next row until both have been spent. 
+end
+
+# The beauty and thegnius of this method is, the previous method and all of its machinery is captured in that one method I made. I made a machine. A machine that iterates thru each inner index of the column index giving the total value of every bag of chips on that string. Genius, and beautiful. Its a fully functioning machine, within a machine. AH-HAH
+ 
+# End Main code
+ 
+p grand_total #=> 1192
